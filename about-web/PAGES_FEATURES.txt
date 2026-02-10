@@ -1,0 +1,217 @@
+============================================
+6GAMER - ALL PAGES FEATURES DOCUMENTATION
+============================================
+
+1. HOME PAGE (/)
+----------------
+Features:
+- Hero section with animated 6GAMER logo
+- Auto-sliding banner carousel (3 banners)
+- 6 games carousel with 3D card effect
+- "Next Gaming Experience" section with feature list
+- Real-time feature slider
+- Join Now CTA section
+- Full footer with navigation
+
+UI Elements:
+- Galaxy background with animated stars
+- Gold gradient animations
+- Framer Motion animations
+- Responsive design
+
+2. GAMES PAGE (/games)
+----------------------
+Features:
+- Game Zone header with stats (6 games, 10 levels, save scores, live ranks)
+- Featured game auto-slider with play button
+- All games grid with slide navigation
+- Game cards showing: icon, name, description, difficulty, 10 levels, auto-save, rank
+- Play Now buttons redirect to login
+
+UI Elements:
+- Animated game icons
+- Difficulty badges (Easy/Medium/Hard)
+- Gold border glow effects
+- Pagination dots
+
+3. LOGIN PAGE (/login)
+----------------------
+Features:
+- Email & password login form
+- Firebase Authentication integration
+- Admin login redirect (admin@gmail.com)
+- Regular user redirect to dashboard
+- "Forgot password" link
+- "Sign up" link for new users
+
+Security:
+- Password validation
+- Error handling with toast messages
+- Loading state during authentication
+
+4. SIGNUP PAGE (/signup)
+------------------------
+Features:
+- Full registration form (name, username, email, phone, password)
+- Firebase Auth user creation
+- Firestore user document creation
+- OTP email verification trigger
+- Redirect to OTP verification page
+
+Fields Saved:
+- name, username, email, phone, uid, createdAt, role
+
+5. VERIFY OTP PAGE (/verify-otp)
+--------------------------------
+Features:
+- 6-digit OTP input field
+- Email display showing where OTP was sent
+- Verify OTP button
+- Resend OTP functionality
+- Redirect to dashboard on success
+
+Security:
+- OTP expiration check
+- Rate limiting on resend
+
+6. RESET PASSWORD PAGE (/reset-password)
+----------------------------------------
+Features:
+- 3-step process:
+  1. Enter email to receive OTP
+  2. Verify OTP
+  3. Receive Firebase password reset link
+- Progress indicator
+- Success confirmation
+
+7. USER DASHBOARD (/user-dashboard)
+-----------------------------------
+Features:
+- Profile section with avatar upload
+- Edit profile dialog (name, username)
+- Theme selector (Cyber Neon, Hyper Glow, Retro Gold)
+- Mirror mode toggle
+- Stats display (battles, victories, XP points)
+- Achievements list
+- All 6 games grid with play buttons
+- Recent scores battle log
+- Logout functionality
+
+Firebase Integration:
+- Real-time user data from Firestore
+- Photo upload to Firebase Storage
+- Score history from leaderboard collection
+
+8. GAME PLAY PAGE (/games/[id])
+-------------------------------
+Features:
+- Individual game container
+- Level tracker (1-10)
+- Score counter
+- Sound toggle
+- Back to dashboard button
+- Game instructions
+- Game features info
+- Score auto-save to Firestore on game over/win
+
+Games Available:
+- ball-maze: Arrow key maze navigation
+- ghost-kill: Click to kill ghosts
+- bird-fly: Space/click to fly
+- snake-game: Arrow key snake control
+- typing-master: Type words before timeout
+- word-maker: Form words from letters
+
+9. LEADERBOARD PAGE (/leadership)
+---------------------------------
+Features:
+- Top 50 players display
+- Filter by game dropdown
+- Search players by username
+- Player comparison slider
+- Rank badges (Diamond, Gold, Silver, Bronze)
+- Real-time Firestore sync
+- Paginated display (3 per page)
+
+Comparison Feature:
+- Click 2 players to compare
+- Slide to morph stats
+- Visual score interpolation
+
+10. ADMIN PAGE (/admin)
+-----------------------
+Features:
+- Dashboard stats overview
+- Tabs: Users, Games, Scores, Analytics, Tools
+
+User Management:
+- Search users
+- Bulk actions (ban, unban, delete, promote)
+- Individual user actions
+- Send email to user
+- Export users JSON
+
+Game Management:
+- View all games
+- Enable/disable games
+- Add new games
+- Delete games
+- Export games JSON
+
+Leaderboard Management:
+- View all scores
+- Delete scores
+- Export scores JSON
+
+Analytics:
+- Total users, banned, admins
+- Active games count
+- Total scores, average score
+- Top 3 performers
+
+Admin Tools:
+- Send Email
+- Broadcast Notification
+- OTP Manager
+- Database Explorer
+- Export Data
+- Add Game
+- Refresh Data
+
+11. ABOUT PAGE (/about)
+-----------------------
+Features:
+- About 6GAMER description
+- Team section (Aman Shukla, Mamta, Shammi)
+- Games list overview
+- Footer
+
+12. TERMS PAGE (/terms)
+-----------------------
+Features:
+- Using Our Website rules
+- Playing Games rules
+- Important Rules
+- Your Data policy
+- Contact information
+
+============================================
+API ROUTES
+============================================
+
+/api/auth/otp - POST: Send OTP email
+/api/auth/otp/verify - POST: Verify OTP
+/api/admin/otps - GET: List active OTPs
+/api/admin/send-email - POST: Send email to user
+/api/seed - POST: Seed database with dummy data
+/api/seed - DELETE: Clear all collections
+/api/games - GET: Get all games
+/api/games/[id] - GET: Get single game
+/api/leaderboard - GET: Get leaderboard
+/api/users - GET: Get all users
+/api/achievements - GET: Get achievements
+/api/challenges - GET: Get daily challenges
+/api/notifications - GET: Get notifications
+/api/analytics - GET: Get analytics data
+
+============================================

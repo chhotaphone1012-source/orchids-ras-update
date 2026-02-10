@@ -1,0 +1,44 @@
+6gamer Game Logic and Functions (Technical Breakdown)
+
+This file contains the core logic and functions used in 6gamer games.
+
+1. Ball Maze Logic (BallMaze.tsx):
+- Function handleKeyDown: Updates player coordinates (pos.x, pos.y) based on Arrow Keys.
+- Grid Logic: Uses cellSize (40px) to move precisely.
+- Wall Check: Uses walls.some() to prevent moving into gold blocks.
+- Win Check: If player reaches (mazeSize - cellSize, mazeSize - cellSize), level completes.
+- Rendering: Canvas draws walls, player, and exit on every frame update.
+
+2. Ghost Kill Logic (GhostKill.tsx):
+- spawnGhost: Uses useCallback and setInterval to spawn a ghost at random X/Y (10-90%).
+- killGhost: Triggered on onClick. Increases count and plays sound.
+- Difficulty: Ghost disappearance time decreases with level (2000 - level * 100).
+- Level Complete: Target count (10 + level * 2) must be reached.
+
+3. Bird Fly Logic (BirdFly.tsx):
+- jump(): Decreases birdY (prev - 60) to simulate flight.
+- Gravity Interval: Increases birdY (prev + 3) every 30ms.
+- Pipe Movement: Pipes move left (x - 3 + level*0.5).
+- Collision: Checks if birdY is outside the pipe gap or hits the ground.
+- Level up: Based on pipes passed successfully.
+
+4. Snake Pro Logic (SnakeGame.tsx):
+- moveSnake: Calculates new head position based on current direction.
+- Food Logic: If head hits food, snake length increases, and food respawns.
+- Collision: Self-collision checked via snake.some(). Wall collision checked via grid bounds.
+
+5. Typing Master Logic (TypingMaster.tsx):
+- Vanishing Logic: Opacity decreases by (0.01 + level * 0.005) every 50ms.
+- handleInput: Validates user input (case-insensitive). If match, next word spawns.
+- Game Over: Triggered if opacity reaches 0.
+
+6. Word Maker Logic (WordMaker.tsx):
+- Scramble: word.split('').sort(() => Math.random() - 0.5).
+- Selection: Players click buttons to build a word string.
+- Validation: If final string matches original word, points are awarded.
+
+Common Functions:
+- handleLevelComplete: Increments score, level, and triggers confetti.
+- handleGameOver: Saves final score to Firebase 'leaderboard' collection.
+- RootProvider: Handles global loading state and gold-themed transitions.
+- Navbar/Footer: Provides royal navigation across all full-stack routes.

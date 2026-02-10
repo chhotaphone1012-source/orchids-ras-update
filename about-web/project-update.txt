@@ -1,0 +1,25 @@
+Updating 6gamer Content and Images
+
+1. Changing Banner Images:
+   - Open src/app/page.tsx.
+   - Look for the 'banners' array at the top.
+   - Replace the 'image' URL with your new Unsplash or local image link.
+
+2. Updating Game Icons:
+   - Open src/app/user-dashboard/page.tsx.
+   - Look for the 'games' array.
+   - Change the 'icon' (Emoji or Lucide icon) for any game.
+
+3. Modifying Game Difficulty:
+   - Most games use the 'level' prop to calculate speed/difficulty.
+   - Example (BirdFly.tsx): Look for 'next = prev + 3 + level * 0.2'.
+   - Increase the multiplier (0.2) to make levels harder.
+
+4. Adding New Games:
+   - Create a new component in src/components/games/.
+   - Add the game ID to the 'games' array in src/app/user-dashboard/page.tsx.
+   - Update the switch-case in src/app/games/[id]/page.tsx to render your new component.
+
+5. Global Theme Colors:
+   - Open src/app/globals.css.
+   - Update --gold-yellow and --gold-orange variables to change the entire site's color scheme.

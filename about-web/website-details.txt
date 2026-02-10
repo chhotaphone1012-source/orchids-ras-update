@@ -1,0 +1,31 @@
+6gamer Website - Deep Knowledge and Logic
+
+Overview:
+6gamer is a premium gaming platform built with Next.js 15, Tailwind CSS, and Firebase. The website features a royal gold-themed UI with 6 interactive games, each having 10 levels of difficulty. It includes a full-stack authentication system with OTP verification via SMTP (Nodemailer) and a global leadership board.
+
+Architecture:
+1. Frontend: React 19 (Next.js 15 App Router), Framer Motion for animations.
+2. Styling: Tailwind CSS with custom gold variables and gradients.
+3. Backend: Next.js API routes for OTP delivery.
+4. Database: Firebase Firestore for users, leaderboard, and scores.
+5. Auth: Firebase Auth for login/signup.
+
+Detailed Component Logic:
+- Dashboard (page.tsx): Uses an auto-sliding banner with motion effects. Sections include 'Why 6gamer', 'Features', and 'Join Now'.
+- Authentication: 
+  - Signup: Captures Name, Username, Email, Phone, Password. Sends OTP via Nodemailer API.
+  - Login: Standard Firebase auth with a special case for admin (abc@gmail.com / 123456).
+  - OTP Verify: Compares user input with session-stored OTP.
+- User Dashboard: Displays user profile data and a library of 6 games. Each game is a separate client component.
+- Admin Panel: Accessible via admin login. Provides CRUD operations for deleting users and resetting global scores.
+
+Game Logic Breakdown:
+1. Ball Maze: A canvas-based game where the player navigates a ball to a golden exit. Uses 2D grid logic and keyboard event listeners.
+2. Ghost Kill: A reaction-based game using Framer Motion. Ghosts spawn at random positions; players must click them before they vanish.
+3. Bird Fly: A gravity-based physics game. Players jump to avoid pipes. Collision detection is based on coordinate overlaps.
+4. Snake Pro: A classic snake game on a 20x20 grid. The snake grows when eating golden dots.
+5. Typing Master: A speed typing game. Words fade out using CSS opacity animations; players must type them to keep the score up.
+6. Word Maker: A puzzle game where players reconstruct scrambled words by clicking letters in the correct sequence.
+
+Full stack flow:
+User Signup -> Firestore (user doc) -> SMTP (OTP) -> User Verify -> Login -> Game Play -> Level Up -> Firestore (leaderboard doc) -> Admin Manage.

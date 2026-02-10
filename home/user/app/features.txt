@@ -1,0 +1,82 @@
+# 6GAMER PRO - PREMIUM GAMING PLATFORM
+
+## PLATFORM STATUS
+- **Website Name**: 6GAMER (Global Update)
+- **Total Games**: 10 (6 Active + 4 Coming Soon)
+- **Active Games**: Ball Maze, Ghost Kill, Bird Fly, Snake Pro, Typing Master, Word Maker
+- **Coming Soon**: Ludo King, Car Racing, Educational Adventures, Endless Runner
+- **Tiers**: Infinite Levels per Game (auto-advance on milestone)
+- **Performance**: 60 FPS requestAnimationFrame Rendering
+- **Firebase**: Verified & Seeded (10 games, 4 users, leaderboard, achievements, banners, challenges)
+
+## AESTHETIC & UI
+- **Theme**: Ultra-Premium Gold & Galaxy Aesthetic
+- **Dashboard Features**: Mirror Mode, Dynamic Themes (Retro Gold, Cyber Neon, Hyper Glow)
+- **Announcement Banner**: Live announcements directly on the User Dashboard
+- **Visuals**: Framer Motion 3D transitions, gold-border glows, and shimmer effects
+- **Navigation**: Improved Admin Toggle Sidebar with better visibility and scrolling
+
+## ADMIN CAPABILITIES
+- **Announcement System**: Real-time banner management via /admin
+- **Banner Sync**: Firestore-backed live updates for site-wide announcements
+- **Control**: Enable/Disable games instantly
+- **Navigator Sidebar**: Fixed layout for full visibility of controls
+- **Email Broadcasting**: Send emails to users via Nodemailer
+- **OTP Manager**: View and manage active OTPs
+- **Analytics**: Total users, banned, admins, active games, total scores, top performers
+
+## USER ECOSYSTEM
+- **Profile CRUD**: Edit Name, Username, Bio, and Location
+- **Photo Upload**: Secure avatar management via Firebase Storage
+- **Stats**: Real-time Battle Log and Legendary XP tracking
+- **Achievements**: Multi-tier achievement system
+- **OTP Verification**: Email-based verification on signup
+
+## GAME MECHANICS (ALL 10 GAMES)
+
+### Active Games:
+- **Ball Maze**: Canvas-based maze, fog of war, magnet power-up, moving walls (Level 5+), mini-map (M key), 20min timer
+- **Ghost Kill**: Click-to-kill reflex game, 5 ghost types (normal/fast/bonus/danger/boss), combo multiplier (up to 3x), slow-time power-up, boss fights on level 5/10/15
+- **Bird Fly**: Physics-based flyer, gravity/velocity simulation, night mode (Level 4+), wind zones, golden rings (+50 bonus), coin collection, pipe object pooling
+- **Snake Pro**: Canvas grid snake, phase mode (pass through walls), poison food (shrinks snake), 5 power-up types (speed/slow/bonus/time/phase), combo glow system
+- **Typing Master**: Real-time WPM tracking, 4 difficulty tiers (easy/medium/hard/expert), streak multiplier, perfect word bonus (+100), accuracy meter, visual keyboard
+- **Word Maker**: Theme-based puzzles (Gaming/Space/Myth), bonus hidden words, decoy letters, hint system (5 per level), streak multiplier
+
+### Coming Soon (Admin Test Mode):
+- **Ludo King**: Full 15x15 board, 52-cell path + 6-cell home paths, rule-based AI (7-tier priority scoring), safe spots, capture mechanics, consecutive 6s penalty, keyboard (Space/Enter to roll, 1-4 to move)
+- **Car Racing**: Canvas highway racing, 4-lane system, arrow key controls, increasing speed per level, 3 obstacle types
+- **Educational Adventures**: 50+ questions across Math/Science/History/Geography/General Knowledge, 5 categories with icons, 50:50/extra time/skip power-ups, 10 lives, difficulty scaling, streak bonuses, time bonuses
+- **Endless Runner**: Side-scrolling platformer, jump/slide mechanics, 4 obstacle types (crate/spike/bird/fire), 4 power-ups (shield/magnet/double/slow), coin collection, particle effects, distance-based scoring
+
+## API ROUTES (14 Total)
+- POST/DELETE /api/seed - Seed/Clear database
+- GET /api/games - Get all active games
+- GET /api/games/[id] - Get single game
+- GET/POST /api/leaderboard - Get/Add scores
+- GET /api/users - Get all users
+- GET /api/user-stats - Get user statistics
+- GET /api/achievements - Get achievements
+- GET /api/challenges - Get daily challenges
+- GET /api/notifications - Get notifications
+- GET /api/analytics - Get analytics data
+- POST /api/auth/otp - Send OTP email
+- POST /api/auth/otp/verify - Verify OTP
+- GET /api/admin/otps - List active OTPs
+- POST /api/admin/send-email - Send email to user
+
+## PAGES (15 Total)
+/ - Home (hero, banners, game carousel, features, CTA, footer)
+/games - All games grid with featured slider
+/games/[id] - Individual game play page with fullscreen
+/login - Email/password authentication
+/signup - Registration with OTP trigger
+/verify-otp - 6-digit OTP verification
+/reset-password - 3-step password reset
+/user-dashboard - Profile, stats, achievements, games
+/admin - Full CRUD admin panel (users, games, scores, analytics, tools)
+/leadership - Global leaderboard with filters and comparison
+/about - About 6GAMER and team
+/contact - Contact form
+/terms - Terms of service
+/privacy - Privacy policy
+/home - Alternative home page

@@ -1,0 +1,14 @@
+6gamer Project Overview
+
+6gamer is a high-end, gold-themed gaming platform designed to provide a premium user experience. It combines modern web technologies like Next.js 15 and Firebase to offer real-time interactivity, secure authentication, and a competitive environment through global leaderboards.
+
+Key Highlights:
+- Premium Gold Theme: Cohesive visual identity across all pages.
+- 6 Real-time Games: Ball Maze, Ghost Kill, Bird Fly, Snake, Typing Master, and Word Maker.
+- 10 Levels per Game: Progressive difficulty to keep players engaged.
+- Full-Stack Auth: Email/Password login with OTP verification for security.
+- Admin Panel: Full CRUD control over users and scores.
+- Responsive Design: Smooth performance on both desktop and mobile views.
+
+Technologies Used:
+Next.js, Firebase, Firestore, Tailwind CSS, Framer Motion, Nodemailer, Lucide React.

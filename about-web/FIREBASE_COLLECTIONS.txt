@@ -1,0 +1,145 @@
+============================================
+6GAMER - FIREBASE COLLECTIONS & FIELDS
+============================================
+
+1. USERS Collection
+-------------------
+   Path: /users/{userId}
+   
+   Fields:
+   - uid: string (Document ID - Firebase Auth UID)
+   - name: string (Full name)
+   - email: string (Email address)
+   - username: string (Display name for games)
+   - phone: string (Optional - Phone number)
+   - role: string ("user" or "admin")
+   - photoURL: string (Optional - Profile picture URL)
+   - isVerified: boolean (Email verified status)
+   - isBanned: boolean (Account ban status)
+   - bannedAt: timestamp (Optional - When banned)
+   - createdAt: timestamp (Account creation date)
+
+
+2. GAMES Collection
+-------------------
+   Path: /games/{gameId}
+   
+   Fields:
+   - id: string (Document ID)
+   - name: string (Game name like "Ball Maze")
+   - icon: string (Emoji or image URL)
+   - description: string (Game description)
+   - levels: number (Total levels - usually 10)
+   - category: string (Game category)
+   - isActive: boolean (Game enabled/disabled)
+   - createdAt: timestamp (When game was added)
+
+
+3. LEADERBOARD Collection
+-------------------------
+   Path: /leaderboard/{scoreId}
+   
+   Fields:
+   - userId: string (Player's user ID)
+   - username: string (Player's display name)
+   - gameId: string (ID of the game played)
+   - gameName: string (Name of the game)
+   - score: number (Final score achieved)
+   - levelReached: number (Level achieved)
+   - accuracy: number (Optional - for Typing Master)
+   - timeTaken: number (Seconds spent in game)
+   - playedAt: timestamp (When score was recorded)
+
+
+4. USERSTATS Collection
+-----------------------
+   Path: /userStats/{userId}
+   
+   Fields:
+   - userId: string (Document ID - same as user UID)
+   - gamesPlayed: number (Total sessions started)
+   - levelsCleared: number (Total levels completed across all games)
+   - totalPlayTime: number (Total seconds played across all games)
+   - averageScore: number (Average points per game)
+   - totalScore: number (Total points earned)
+   - gamesWon: number (Total games won)
+   - lastPlayed: timestamp (Last activity date)
+   - achievements: array (List of unlocked achievements)
+
+
+5. NOTIFICATIONS Collection
+---------------------------
+   Path: /notifications/{notificationId}
+   
+   Fields:
+   - title: string (Heading)
+   - message: string (Body text)
+   - type: string ("info", "success", "warning", "announcement")
+   - recipientId: string (User ID or "ALL" for global)
+   - isRead: boolean (Status for specific notifications)
+   - link: string (Optional - URL to redirect user)
+   - createdAt: timestamp (Creation date)
+
+
+6. DAILYCHALLENGES Collection
+-----------------------------
+   Path: /dailyChallenges/{challengeId}
+   
+   Fields:
+   - title: string (e.g., "Slayer's Streak")
+   - gameId: string (Target game)
+   - condition: string (e.g., "Reach Level 5 without missing")
+   - targetScore: number (Minimum score required)
+   - rewardPoints: number (Points for completion)
+   - isActive: boolean (Status)
+   - expirationTime: timestamp (When challenge ends)
+
+
+7. ACHIEVEMENTS Collection
+--------------------------
+   Path: /achievements/{achievementId}
+   
+   Fields:
+   - id: string (Slug like "first-win")
+   - name: string (Badge title)
+   - description: string (How to earn)
+   - icon: string (Emoji or Badge icon)
+   - category: string ("Bronze", "Silver", "Gold", "Platinum")
+   - requirementType: string (e.g., "score", "level", "gamesPlayed")
+   - requirementValue: number (Threshold to unlock)
+
+
+8. OTPs Collection (Temporary)
+------------------------------
+   Path: /otps/{email}
+   
+   Fields:
+   - email: string (User email)
+   - otp: string (6-digit OTP code)
+   - type: string ("verify" or "reset")
+   - createdAt: timestamp (When OTP was generated)
+   - expiresAt: timestamp (OTP expiration time - 5 minutes)
+
+============================================
+CURRENT DATA IN DATABASE (1 Dummy User):
+============================================
+
+User: DemoGamer
+- Email: demo@6gamer.com
+- Role: user
+- Verified: true
+- Games played in leaderboard: 5 entries
+
+Games: 6 total
+- Ball Maze (Puzzle)
+- Ghost Kill (Action)
+- Bird Fly (Arcade)
+- Snake Pro (Classic)
+- Typing Master (Educational)
+- Word Maker (Word)
+
+Achievements: 5 total
+Daily Challenges: 3 active
+Notifications: 2 global
+
+============================================

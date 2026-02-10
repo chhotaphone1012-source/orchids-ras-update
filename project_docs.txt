@@ -1,0 +1,84 @@
+# 6GAMER PRO - TECHNICAL DOCUMENTATION
+
+## Project Overview
+6GAMER is a high-performance, fullstack gaming platform designed with a premium "Royal Gold" aesthetic. It features 10 games (6 active + 4 coming soon) with real-time global leaderboards, achievement systems, and an advanced admin dashboard. Firebase connection verified and seed data working.
+
+## Tech Stack
+- **Frontend**: Next.js 15.3.5 (App Router), React 19, Framer Motion (Animations), Tailwind CSS 4
+- **Backend**: Firebase (Firestore for real-time data, Auth for security, Storage for assets)
+- **Icons & UI**: Lucide React, Shadcn/UI patterns
+- **Communication**: Nodemailer for OTP/Email services
+- **Effects**: canvas-confetti for celebrations, Web Audio API for Ludo/Car sounds
+
+## Project Structure
+- `src/app/`: Contains all page routes (15 pages including Home, Games, Leadership, Login, Admin)
+- `src/components/games/`: Core logic for every game (10 components: BallMaze, GhostKill, BirdFly, SnakeGame, TypingMaster, WordMaker, LudoGame, CarRacing, EducationalAdventures, EndlessRunner)
+- `src/app/api/`: Backend API routes (14 endpoints for stats, leaderboards, user management, auth, admin)
+- `src/lib/`: Firebase configuration, Firestore CRUD, TypeScript types, utility functions
+
+## Game Logic Breakdown
+
+### 1. Ball Maze (Canvas-based Precision Movement)
+- **Logic**: Canvas rendering with grid collision detection. Random wall generation scaled by level.
+- **Features**: Fog of War (radial gradient visibility), Magnet Power-up (distance-based attraction pulls coins), Moving Walls (Level 5+ with bounce physics), Mini-Map (M key, 10s cooldown, 3s display)
+- **Controls**: Arrow keys / WASD, M for mini-map, ESC for pause
+- **Infinite Play**: Coins spawn endlessly, every 5 coins triggers level advance with bonus points
+
+### 2. Ghost Kill (Reflex Click Game)
+- **Logic**: Time-based spawning at random coordinates. 5 ghost types with probability weighting.
+- **Ghost Types**: Normal (50% chance, 10pts), Fast (25%, 25pts, shorter lifetime), Bonus (10%, 50pts), Danger (15%, lose 2 lives), Boss (every 5th level, 5HP, 500pts)
+- **Features**: Combo multiplier (up to 3x), Slow-time power-up (random spawn, 5s duration), Screen shake on danger hit
+- **Infinite Play**: Every 50 kills triggers level advance
+
+### 3. Bird Fly (Physics-based Flyer)
+- **Logic**: Gravity/velocity simulation with requestAnimationFrame. Delta-time based updates for consistent speed.
+- **Features**: Night Mode (Level 4+, stars and moon), Wind Zones (push bird up/down), Golden Rings (+50 bonus for center pass), Coin Collection, Pipe Object Pooling for performance
+- **Physics**: gravity=0.2, jumpForce=-5.0, pipeGap=200, birdSize=20 (smaller for easier navigation)
+
+### 4. Snake Pro (Canvas Grid Snake)
+- **Logic**: Grid-based movement with direction buffering to prevent 180-degree turns.
+- **Features**: Phase Mode (pass through walls, wrap around edges), Poison Food (shrinks snake by 3 segments), 5 Power-up types (Speed 1.6x, Slow 0.5x, Bonus +5, Time +10, Phase 5s), Combo glow effect
+- **Grid**: 30x30 cells, 20px cell size, baseSpeed decreases with level
+
+### 5. Typing Master (React State-based)
+- **Logic**: String comparison with real-time character validation. WPM calculated from chars/5 divided by elapsed minutes.
+- **Features**: 4 difficulty tiers (easy 3-letter, medium 6-letter, hard 8-letter, expert 11-letter), Streak multiplier, Perfect word bonus (+100pts), Accuracy tracking, Visual keyboard display
+
+### 6. Word Maker (React State-based)
+- **Logic**: Letter selection from scrambled pool. Decoy letters added per level (up to 4 extra).
+- **Features**: 3 themes (Gaming/Space/Myth), Hidden bonus word for extra XP, 5 hints per level (highlights correct letter), Streak multiplier, Reset button
+
+### 7. Ludo King (Full Board Game - Coming Soon)
+- **Logic**: 15x15 grid board, 52-cell common path, 6-cell home paths per color, 4 base positions per player.
+- **AI System**: 7-tier priority scoring: (1) HOME=1M pts, (2) Capture=500K, (3) Deploy=300K, (4) Enter Home Stretch=200K, (5) Escape Danger=150K, (6) Safe Spot=100K, (7) Race Home=pos*2K. Avoids unsafe positions (-80K penalty).
+- **Rules**: 6 to deploy, 3 consecutive 6s = penalty, extra turn on 6/capture/reaching home. Safe spots: [0,8,13,21,26,34,39,47]
+- **Controls**: Space/Enter to roll, 1-4 keys to select pieces, Web Audio API for sounds
+
+### 8. Car Racing (Canvas Highway - Coming Soon)
+- **Logic**: Canvas-based highway with 4 lanes, animated lane markings (dash offset), obstacle spawning at intervals.
+- **Features**: Arrow key steering, increasing speed per level, 3 obstacle color types, score per dodged obstacle
+
+### 9. Educational Adventures (Quiz Game - Coming Soon)
+- **Logic**: 50+ questions across 5 categories (Math/Science/History/Geography/General), difficulty scaling by level.
+- **Features**: Category selection screen, 50:50 power-up (eliminate 2 wrong answers), Extra Time (+15s), Skip question, 10 lives, 30s per question timer, streak/time bonuses, question difficulty badges
+- **Also**: EduAdventure.tsx variant with procedural math generation, word/science/history/logic categories, hint system, 3 lives
+
+### 10. Endless Runner (Side-scrolling Platformer - Coming Soon)
+- **Logic**: Physics-based jumping/sliding with gravity simulation, requestAnimationFrame game loop.
+- **Features**: 4 obstacle types (crate/spike/bird/fire) with unique rendering, 4 power-ups (shield absorbs hit, magnet attracts coins, double coin value, slow-mo), Particle effects on collection, distance-based scoring, increasing speed over distance
+
+## UI/UX Features
+- **Animations**: Framer Motion for scroll-reveal sections, 3D game card rotations, page transitions, countdown overlays
+- **Theme**: Custom CSS variables for `gold-gradient`, `galaxy-bg`, `gold-border-glow`, `shimmer-effect`
+- **Performance**: memo, useCallback, useRef for 60FPS gameplay, object pooling in Bird Fly
+
+## Auth & Security
+- **Firebase Auth**: Secure login/signup with session persistence
+- **Admin Mode**: Special access for `admin@6gamer.com` or `admin@gmail.com` (password: 123456) to test disabled games
+- **OTP Verification**: File-based OTP storage (data/otps.json), 10-minute expiry, max 150 entries, email via Nodemailer SMTP
+- **Strict Auth**: 2000ms grace period during token refresh to prevent accidental redirects
+
+## Database & Seed Data
+- **Firebase Verified**: POST /api/seed successfully seeds 10 games, 4 users, leaderboard entries, achievements, banners, challenges, notifications, reports
+- **Collections**: games, users, leaderboard, userStats, achievements, notifications, dailyChallenges, banners, rewards, reports
+- **Dummy Users**: Rakesh Shukla (user), Aman Shukla (admin), Mamta (user), Shammi (user)

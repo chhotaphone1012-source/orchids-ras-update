@@ -1,0 +1,26 @@
+Steps to remove Next.js Dev Indicators (The "N" badge, static route indicator, and dev overlay):
+
+1.  **Modify next.config.ts**:
+    Add the following configuration to your `nextConfig` object:
+    ```typescript
+    devIndicators: {
+      appIsrStatus: false,
+      buildActivity: false,
+    },
+    experimental: {
+      devIndicator: false
+    }
+    ```
+    This disables the build activity spinner and the static/dynamic route indicators in the bottom corner.
+
+2.  **Environment Variables**:
+    In some environments, Next.js adds debugging tools. Ensure `NODE_ENV` is set to `production` when deploying. Next.js naturally hides these indicators in production builds (`next build && next start`).
+
+3.  **Browser Extensions**:
+    If you see a Next.js icon in your browser's address bar or dev tools, that is likely the "Next.js DevTools" browser extension, which can be disabled in your browser settings.
+
+4.  **Error Overlays**:
+    While you cannot completely disable the development error overlay (as it's critical for debugging), it will never appear in the production environment.
+
+5.  **Turbopack Specifics**:
+    When using `--turbopack`, some UI elements are handled by the Turbopack dev server. These are also development-only and will not persist in a production build.
